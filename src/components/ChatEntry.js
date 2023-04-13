@@ -1,22 +1,24 @@
 import React from 'react';
+import Timestamp from './TimeStamp';
+
 import './ChatEntry.css';
-import PropTypes from 'prop-types';
 
-const ChatEntry = (props) => {
-  return (
-    <div className="chat-entry local">
-      <h2 className="entry-name">Replace with name of sender</h2>
-      <section className="entry-bubble">
-        <p>Replace with body of ChatEntry</p>
-        <p className="entry-time">Replace with TimeStamp component</p>
-        <button className="like">🤍</button>
-      </section>
-    </div>
-  );
-};
+class ChatEntry extends React.Component {
+  render() {
+    const entryClasses = `chat-entry ${this.props.entry.source}`;
 
-ChatEntry.propTypes = {
-  //Fill with correct proptypes
-};
+    return (
+      <article className={entryClasses}>
+        <h2 className="entry-name">{this.props.entry.sender}</h2>
+        <div className="entry-bubble">
+          <p className="entry-body">{this.props.entry.body}</p>
+          <p className="entry-time">
+            <Timestamp time={this.props.entry.timeStamp} />
+          </p>
+        </div>
+      </article>
+    );
+  }
+}
 
 export default ChatEntry;
