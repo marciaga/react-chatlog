@@ -7,8 +7,9 @@ const ChatEntry = (props) => {
   const { handleLike } = props;
   const entryClasses = `chat-entry ${props.entry.source}`;
   const [liked, setLike] = useState(false);
+
   const handleClick = () => {
-    handleLike(!liked, setLike)
+    handleLike(liked, setLike)
   };
 
   return (

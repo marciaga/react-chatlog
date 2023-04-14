@@ -20,7 +20,7 @@ const appTitle = () => {
 const App = () => {
   const [likes, setLikes] = useState(0)
   const handleLike = (liked, updateLike) => {
-    setLikes(prev => liked ? prev + 1 : prev - 1);
+    setLikes(prev => !liked ? prev + 1 : prev - 1);
     updateLike(!liked)
   }
 
@@ -32,6 +32,7 @@ const App = () => {
           <p>{likes} ❤️s</p>
         </section>
         <p>environment: {process.env.REACT_APP_ENV}</p>
+        <p>Version: {process.env.REACT_APP_RENDER_GIT_COMMIT}</p>
       </header>
       <main>
         <ChatLog entries={chatMessages} handleLike={handleLike} />
