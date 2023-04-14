@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ChatLog from './components/ChatLog';
 import './App.css';
 import chatMessages from './data/messages.json';
@@ -18,13 +18,23 @@ const appTitle = () => {
 }
 
 const App = () => {
+  const [likes, setLikes] = useState(0)
+  const handleLike = (liked, updateLike) => {
+    setLikes(prev => liked ? prev + 1 : prev - 1);
+    updateLike(!liked)
+  }
+
   return (
     <div id="App">
       <header>
         <h1>{appTitle()}</h1>
+        <section>
+          <p>{likes} ❤️s</p>
+        </section>
+        <p>environment: {process.env.REACT_APP_ENV}</p>
       </header>
       <main>
-        <ChatLog entries={chatMessages} />
+        <ChatLog entries={chatMessages} handleLike={handleLike} />
       </main>
     </div>
   );
